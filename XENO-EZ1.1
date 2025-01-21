@@ -1,6 +1,21 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Nattaphon07/XENO-EZ-1.0/refs/heads/main/XENO-EZ-1.0"))()
-for PlaceID, Execute in pairs(Games) do
-    if PlaceID == game.PlaceId then
-        loadstring(game:HttpGet(Execute))()
-    end
+getgenv().Games = {
+  [15135285305] = "https://raw.githubusercontent.com/Nattaphon07/XENO-EZz/refs/heads/main/XENO-EZz", -- GEF
+  [17625359962] = "https://raw.githubusercontent.com/Nattaphon07/Rivals-/refs/heads/main/Rivals", -- Rivals
+  [5777099015] = "https://raw.githubusercontent.com/Nattaphon07/Cheese-Escape/refs/heads/main/Cheese-Escape", -- Cheese Escape
+  [537413528] = "https://raw.githubusercontent.com/Nattaphon07/Build-A-Boat-For-Treasure/refs/heads/main/Build%20A%20Boat%20For%20Treasure", -- Build-A-Boat-For-Treasure
+  [3475397644] = "https://raw.githubusercontent.com/Nattaphon07/DA-SCRIPT/refs/heads/main/DA-SCRIPT", -- DA-SCRIPT
+  [16732694052] = "https://raw.githubusercontent.com/Nattaphon07/Fisch/refs/heads/main/Fisch", -- Fisch
+}
+
+local placeId = game.PlaceId
+if getgenv().Games[placeId] then
+  print("Loading script for PlaceId:", placeId)
+  local success, err = pcall(function()
+    loadstring(game:HttpGet(getgenv().Games[placeId]))()
+  end)
+  if not success then
+    warn("Failed to load script:", err)
+  end
+else
+  print("No script found for PlaceId:", placeId)
 end
